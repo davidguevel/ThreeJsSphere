@@ -159,34 +159,6 @@
 
 					targets.table.push( object );
 
-					// 2nd sphere test
-					var element2 = document.createElement( 'div' );
-					element2.className = 'element';
-					element2.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
-
-					var sampleimage2 = document.createElement('img');
-					sampleimage2.className = 'element imagesample';
-					if ( i < 1){
-						i=i +1;
-					};
-					sampleimage2.src = 'cropped/sample (' + i +').jpg';
-					element2.appendChild( sampleimage2 );
-					sampleimage2.addEventListener('click', function (){
-						console.log ('clicked rianno');
-						transform( targets2.sphere, 5000 );
-					});
-					var object2 = new THREE.CSS3DObject( element2 );
-					object2.position.x = Math.random() * 4000 - 2000;
-					object2.position.y = Math.random() * 4000 - 2000;
-					object2.position.z = Math.random() * 4000 - 2000;
-					scene.add( object2 );
-
-					objects.push( object2 );
-
-					targets.table.push( object2 );
-					// end of 2nd sphere test
-					
-
 				}
 
 				// sphere
