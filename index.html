@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>ThreeJsSphere</title>
+		<title>three.js css3d - periodic table</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
@@ -116,7 +116,9 @@
 			var controls;
 
 			var objects = [];
+			var objects2 = [];
 			var targets = { table: [], sphere: [], helix: [], grid: [] };
+			var targets2 = { table: [], sphere: [], helix: [], grid: [] };
 
 			init();
 			animate();
@@ -130,7 +132,7 @@
 
 				// table
 
-				for ( var i = 0; i < 70; i += 1 ) {
+				for ( var i = 0; i < 40; i += 1 ) {
 
 					var element = document.createElement( 'div' );
 					element.className = 'element';
@@ -143,7 +145,10 @@
 					};
 					sampleimage.src = 'cropped/sample (' + i +').jpg';
 					element.appendChild( sampleimage );
-
+					sampleimage.addEventListener('click', function (){
+						console.log ('clicked rianno');
+						transform( targets.helix, 2000 );
+					});
 					var object = new THREE.CSS3DObject( element );
 					object.position.x = Math.random() * 4000 - 2000;
 					object.position.y = Math.random() * 4000 - 2000;
@@ -152,10 +157,34 @@
 
 					objects.push( object );
 
-					//
-
-
 					targets.table.push( object );
+
+					// 2nd sphere test
+					var element2 = document.createElement( 'div' );
+					element2.className = 'element';
+					element2.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+
+					var sampleimage2 = document.createElement('img');
+					sampleimage2.className = 'element imagesample';
+					if ( i < 1){
+						i=i +1;
+					};
+					sampleimage2.src = 'cropped/sample (' + i +').jpg';
+					element2.appendChild( sampleimage2 );
+					sampleimage2.addEventListener('click', function (){
+						console.log ('clicked rianno');
+						transform( targets2.sphere, 5000 );
+					});
+					var object2 = new THREE.CSS3DObject( element2 );
+					object2.position.x = Math.random() * 4000 - 2000;
+					object2.position.y = Math.random() * 4000 - 2000;
+					object2.position.z = Math.random() * 4000 - 2000;
+					scene.add( object2 );
+
+					objects.push( object2 );
+
+					targets.table.push( object2 );
+					// end of 2nd sphere test
 					
 
 				}
@@ -182,9 +211,7 @@
 
 					targets.sphere.push( object );
 
-					object.addEventListener('hover', function (){
-						console.log ('clicked rianno');
-					}, false);
+
 
 				}
 
@@ -245,15 +272,6 @@
 				controls.maxDistance = 6000;
 				controls.addEventListener( 'change', render );
 
-				var ISE = document.getElementsByClassName('element');
-				for (var i = 0 ; i < ISE.length; i++) {
-					ISE[i].addEventListener('hover', function ( event ){
-						console.log ('clicked rianno');
-					}, false);
-				}
-
-
-
 				var button = document.getElementById( 'sphere' );
 				button.addEventListener( 'click', function ( event ) {
 
@@ -280,6 +298,8 @@
 				//
 
 				window.addEventListener( 'resize', onWindowResize, false );
+
+				
 
 			}
 
@@ -311,6 +331,36 @@
 
 			}
 
+			// for 2nd sphere
+			function transform2( targets2, duration2 ) {
+
+				TWEEN.removeAll();
+
+				for ( var i = 0; i < objects.length; i ++ ) {
+
+					var object = objects[ i ];
+					var target = targets[ i ];
+
+					new TWEEN.Tween( object.position )
+						.to( { x: target.position.x, y: target.position.y, z: target.position.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+
+					new TWEEN.Tween( object.rotation )
+						.to( { x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+
+				}	
+
+					new TWEEN.Tween( this )
+					.to( {}, duration * 2 )
+					.onUpdate( render )
+					.start();
+
+			}			
+			// end of for 2nd sphere
+
 			function onWindowResize() {
 
 				camera.aspect = window.innerWidth / window.innerHeight;
@@ -329,7 +379,6 @@
 				TWEEN.update();
 
 				controls.update();
-
 			}
 
 			function render() {
@@ -337,7 +386,9 @@
 				renderer.render( scene, camera );
 
 			}
+					/*
 
+					*/
 		</script>
 	</body>
 </html>
