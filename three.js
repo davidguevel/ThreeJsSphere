@@ -1,3 +1,6 @@
+//Rianno
+//Rizarri
+
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -19755,7 +19758,7 @@
 			}
 
 			scope.numPlanes = nPlanes;
-			
+
 			return dstArray;
 
 		}
@@ -26155,7 +26158,7 @@
 	 *
 	 * }
 	 **/
-	 
+
 	 function ExtrudeGeometry( shapes, options ) {
 
 		Geometry.call( this );
@@ -26176,7 +26179,7 @@
 	ExtrudeGeometry.prototype = Object.create( Geometry.prototype );
 	ExtrudeGeometry.prototype.constructor = ExtrudeGeometry;
 
-	 
+
 
 	function ExtrudeBufferGeometry( shapes, options ) {
 
@@ -26693,7 +26696,7 @@
 		/////  Internal functions
 
 		function buildLidFaces() {
-			
+
 			var start = verticesArray.length/3;
 
 			if ( bevelEnabled ) {
@@ -26743,7 +26746,7 @@
 				}
 
 			}
-			
+
 			scope.addGroup( start, verticesArray.length/3 -start, options.material !== undefined ? options.material : 0);
 
 		}
@@ -26766,7 +26769,7 @@
 				layeroffset += ahole.length;
 
 			}
-			
+
 
 			scope.addGroup( start, verticesArray.length/3 -start, options.extrudeMaterial !== undefined ? options.extrudeMaterial : 1);
 
@@ -26957,7 +26960,7 @@
 	 *  bevelSize: <float> // how far from text outline is bevel
 	 * }
 	 */
-	 
+
 
 	function TextGeometry(  text, parameters ) {
 
@@ -36150,7 +36153,7 @@
 			return this.gain.gain.value;
 
 		},
-		
+
 		setVolume: function ( value ) {
 
 			this.gain.gain.value = value;
